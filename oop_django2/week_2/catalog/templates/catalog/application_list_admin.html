@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load bootstrap %}
+{% block content %}
+<div class="container">
+    <div class="col mb-3">
+        {% if perms.catalog.change_application %}
+        <h1>Заявки всех пользователей</h1>
+        <form action="" method="GET">
+            {{ filter.form|bootstrap }}
+            <button type="submit" class="btn btn-primary">Показать</button>
+        </form>
+        {% if application_list %}
+        <ul>
+            {% for application in filter.qs %}
+            <li>Пользователь: {{application.client}}</li>
+            <li>Название заявки: {{application.name}}</li>
+            <li>Описание заявки: {{application.summary}}</li>
+            <li>Категория заявки: {{application.category}}</li>
+            <li>Временная метка: {{application.timestamp}}</li>
+            <li>Статус заявки: {{application.status}}</li>
+            <div>
+                <p>Изменить статус:</p>
+                <a href="{% url 'confirm-update' application.pk 'Принято в работу' %}">Статус - принято в работу</a>
+                <a href="{% url 'confirm-update' application.pk  'Выполнено' %}">Статус - выполнено</a>
+            </div>
+            <li><a href="{% url 'application-delete' application.pk %}">Удалить заявку</a></li>
+            <br>
+            <br>
+            <br>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p>Нет заявок.</p>
+        {% endif %}
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

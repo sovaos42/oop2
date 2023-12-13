@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <div class="col mb-3">
+        <h1>Здравствуйте {{ new_user.first_name }}!</h1>
+        <p>Ваш аккаунт успешно создан. Вы можете <a href="{% url 'login' %}">войти</a>.</p>
+    </div>
+</div>
+{% endblock %}

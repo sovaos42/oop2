@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load bootstrap %}
+{% block content %}
+<div class="container">
+    <div class="col mb-3">
+        <h1>Мои заявки</h1>
+        <form action="" method="GET">
+            {{ filter.form|bootstrap }}
+            <button type="submit" class="btn btn-primary">Показать</button>
+        </form>
+        {% if application_list %}
+        <ul>
+            {% for application in filter.qs %}
+            <li>Пользователь: {{application.client}}</li>
+            <li>Название заявки: {{application.name}}</li>
+            <li>Описание заявки: {{application.summary}}</li>
+            <li>Категория заявки: {{application.category}}</li>
+            <li>Временная метка: {{application.timestamp}}</li>
+            <li>Статус заявки: {{application.status}}</li>
+            {% if application.status == "Принято в работу" %}
+            <li>Комментарий: {{application.comment}}</li>
+            {% elif application.status == "Выполнено" %}
+            <img width="150px" height="100px" src="{{ application.design.url }}">
+            {% endif %}
+            <li><a href="{% url 'application-delete' application.pk %}">Удалить заявку</a></li>
+            <br>
+            <br>
+            <br>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p>Нет заявок.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

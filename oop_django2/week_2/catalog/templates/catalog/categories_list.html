@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="col mb-3">
+        <div>
+            <h1>Управление категориями</h1>
+            <a href="{% url 'create-category' %}">Добавить новую категорию</a>
+        </div>
+
+        {% if categories_list %}
+        <h2>Удалить категории</h2>
+        {% for category in categories_list %}
+        <p>
+            {{ category.name }} -
+            <a href="{% url 'delete-category' category.pk %}">удалить</a>
+        </p>
+        {% endfor %}
+        {% else %}
+        <p>Не существует категорий заявок</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container">
+    <div class="col mb-3">
+        <h1>Создание аккаунта</h1>
+        <p>Зарегистрируйтесь, следуя этой форме:</p>
+        <form class="col-form-label" action="." method="post">
+            {{ user_form.as_p }}
+            {% csrf_token %}
+            <p><input class="btn btn-info mb-3" type="submit" value="Создать аккаунт"></p>
+        </form>
+    </div>
+</div>
+{% endblock %}

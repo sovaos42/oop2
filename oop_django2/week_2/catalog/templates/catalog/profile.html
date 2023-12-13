@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container">
+    <div class="col mb-3">
+        <ul>
+            <li><a href="{% url 'application' %}">Мои заявки</a></li>
+            {% if perms.catalog.change_application %}
+            <li><a href="{% url 'view-categories' %}">Управление категориями</a>
+            <li><a href="{% url 'application-admin' %}">Заявки всех пользователей</a></li>
+            {% endif %}
+            <li><a href="{% url 'application-create' %}">Создать заявку</a></li>
+        </ul>
+    </div>
+</div>
+{% endblock %}

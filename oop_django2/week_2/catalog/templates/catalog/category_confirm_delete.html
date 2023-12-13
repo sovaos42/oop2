@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="col mb-3">
+        <div>
+            <h1>Удаление категории</h1>
+            <p>Вы точно хотите удалить категорию?</p>
+            <form method="post">
+                {% csrf_token %}
+                <button class="btn btn-info mb-3" type="submit">Да</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
